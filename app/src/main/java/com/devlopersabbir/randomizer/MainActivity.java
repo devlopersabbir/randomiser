@@ -8,58 +8,49 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    int count = 0;
+    TextView countElement;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         // output
-        TextView countElement = findViewById(R.id.count);
+        countElement = findViewById(R.id.count);
         Button inc = findViewById(R.id.inc);
         Button dec = findViewById(R.id.dec);
         Button reset = findViewById(R.id.reset);
 
 
        inc.setOnClickListener(new View.OnClickListener() {
-           int count = Integer.parseInt(countElement.getText().toString());
            @Override
            public void onClick(View view) {
                countAmount(count += 1);
            }
-
-           public void countAmount(int count) {
-               if(count == 0){
-                   countElement.setText("0");
-               }else {
-                   countElement.setText(String.valueOf(count));
-               }
-           }
-
        });
 
        dec.setOnClickListener(new View.OnClickListener() {
 
-           int count = Integer.parseInt(countElement.getText().toString());
            @Override
            public void onClick(View view) {
                countAmount(count -= 1);
-           }
-
-           public void countAmount(int count) {
-               if(count == 0){
-                   countElement.setText("0");
-               }else {
-                   countElement.setText(String.valueOf(count));
-               }
            }
        });
 
        reset.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               countElement.setText("0");
+               countAmount(0);
            }
        });
 
+    }
+
+    public void countAmount(int count) {
+        if(count == 0){
+            countElement.setText("0");
+        }else {
+            countElement.setText(String.valueOf(count));
+        }
     }
 }
